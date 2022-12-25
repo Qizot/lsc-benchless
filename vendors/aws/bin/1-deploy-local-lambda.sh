@@ -1,5 +1,7 @@
 FUNCTION_NAME=$1
 ENVIRONMENT=$2
+REGION=us-west-1
+
 
 function fail() {
     echo $2
@@ -8,10 +10,11 @@ function fail() {
 
 alias awslocal="aws --endpoint-url=http://localhost:4566"
 
-awslocal lambda get-function --function-name ${FUNCTION_NAME} > /dev/null 
-[ $? != 0 ] || awslocal lambda delete-function --function-name ${FUNCTION_NAME}
+awslocal lambda get-function --function-name ${FUNCTION_NAME} --region ${REGION} > /dev/null 
+[ $? != 0 ] || awslocal lambda delete-function --function-name ${FUNCTION_NAME} --region ${REGION}
 
 awslocal lambda create-function \
+    --region ${REGION} \
     --function-name ${FUNCTION_NAME} \
     --environment $ENVIRONMENT \
     --runtime nodejs12.x \
@@ -23,11 +26,12 @@ awslocal lambda create-function \
 
 [ $? == 0 ] || fail 1 "Failed: AWS / lambda / create-function"
 
-awslocal lambda get-function-url-config --function-name ${FUNCTION_NAME} > /dev/null 
-[ $? != 0 ] || awslocal lambda delete-function-url-config --function-name ${FUNCTION_NAME}
+awslocal lambda get-function-url-config --function-name ${FUNCTION_NAME} --region ${REGION} > /dev/null 
+[ $? != 0 ] || awslocal lambda delete-function-url-config --function-name ${FUNCTION_NAME} --region ${REGION}
 
 function_url=$(
     awslocal lambda create-function-url-config \
+        --region ${REGION} \
         --function-name ${FUNCTION_NAME} \
         --auth-type NONE \
         | jq '.FunctionUrl'
