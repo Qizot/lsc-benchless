@@ -1,0 +1,4 @@
+
+> gcp@1.0.0 simulate_cpu_load
+> npx functions-framework --target=simulate_cpu_load
+

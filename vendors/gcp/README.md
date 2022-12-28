@@ -9,12 +9,17 @@ Implementation of GCP Cloud Function serverless functions.
 * `hello` - simple hello world - testing the cold start 
 * `object_storage_upload` - Google Cloud Storage upload  - for the vendor's object storage solution (uploads a 50MB object and returns
     the execution time)
+* `get_resources` - return the information about the CPU and memory used on the runtime
+* `simulate_cpu_load` - returns the time in miliseconds elapsed while performing some computation of a given size (specified by the parameter). 
 
 
 ## Structure
 All functions are implemented in a single file `index.js`.
-
-To run them locally one can run the following commands:
+First, install the required dependencies:
+```
+npm ci
+```
+To run the functions locally one can run the following commands:
 ```bash
 # run the hello function
 npm run hello
@@ -32,6 +37,8 @@ for the first time:
 // await storage.createBucket(process.env.STORAGE_BUCKET);
 ```
 
-Also to test the storage function one needs to run the `docker-compose` which consists of a fakte Google Cloud Storage 
+Also to test the storage function one needs to run the `docker-compose` which consists of a fake Google Cloud Storage 
 container.
+
+The `simulate cpu load` function requires to pass a `numberOfIterations` query parameter to the HTTP url.
 

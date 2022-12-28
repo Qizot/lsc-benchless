@@ -10,6 +10,8 @@ Implementation of AWS Lambda serverless functions.
 * `hello` - simple hello world - testing the cold start 
 * `object_storage_upload` - S3 upload  - for the vendor's object storage solution (uploads a 50MB object and returns
     the execution time)
+* `get_resources` - return the information about the CPU and memory used on the runtime
+* `simulate_cpu_load` - returns the time in miliseconds elapsed while performing some computation of a given size (specified by the parameter).
 
 ## Structure
 `bin` folder contains various scripts required for building and deploying the lambdas:
@@ -28,6 +30,8 @@ with proper S3. On dev environment it connects to `minio` (the `localstack` didn
 
 To test out the lambdas the `1-deploy-local-lambda.sh` scripts will print out the lambda's url on completion. All you
 need is to perform an HTTP request against it.
+
+The `simulate cpu load` function requires to pass a `numberOfIterations` query parameter to the HTTP url.
 
 ## Dev environment
 Before deploying to the cloud we can freely test given lambdas by deploying them to local environment provided

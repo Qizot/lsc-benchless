@@ -6,9 +6,35 @@ functions.http("hello", (_req, res) => {
   res.send("Hello world!");
 });
 
+functions.http("get_resources", (_req, res) => {
+  var os = require('os');
+  res.send(JSON.stringify({
+    cpus: os.cpus(),
+    totalmem: os.totalmem(), 
+    freemem: os.freemem()
+  }));
+});
+
+function simulateLoad(numberOfIterations) {
+  sum = 0;
+  for(var i=0; i<numberOfIterations; i++) {
+    sum+=1;
+  }
+  return sum;
+}
+
+functions.http("simulate_cpu_load", (req, res) => {
+  const startTime = new Date();
+  var result = simulateLoad(req['query']['numberOfIterations']);
+  const endTime = new Date();
+  res.send(JSON.stringify({
+      elapsedTimeMs: (endTime-startTime)  
+    }));
+});
+
+
 function createPayload(size) {
   return Buffer.from(new Uint8Array(size));
-
 }
 
 functions.http('object_storage_upload', async (_req, res) => {
