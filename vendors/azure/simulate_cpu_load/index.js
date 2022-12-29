@@ -8,7 +8,6 @@ function simulateLoad(numberOfIterations) {
 module.exports = async function (context, req){
   try{
     const startTime = new Date();
-    console.error(req);
     simulateLoad(req['query']['numberOfIterations']);
     const endTime = new Date();
 
