@@ -4,7 +4,7 @@ Implementation of Azure Function serverless functions.
 ## Requirements
 * `docker`
 * `docker-compose`
-* `acure-functions-core-tools@4`
+* `azure-functions-core-tools@4`
 
 ## Implemented functions
 * `hello` - simple hello world - testing the cold start 
@@ -12,15 +12,26 @@ Implementation of Azure Function serverless functions.
     the execution time)
 
 ## Structure
-Each of the functions has its own folder. To run any of them locally use any of following commands:
+Each of the functions has its own folder.
+First, install the dependencies:
+```
+npm ci
+``` 
+To run any of them locally use any of following commands:
 ```bash
 # run the hello function
 func start hello
 # run the storage function
 func start object_storage_upload
+# run the get resources function
+func start get_resources
+# run the simulate cpu load function
+func start get_resources
 ```
 
 To run the storage function locally you need to run `azurite` with given `docker-compose` setup.
+
+The `simulate cpu load` function requires to pass a `numberOfIterations` query parameter to the HTTP url.
 
 In case of local development and storage function couple of environmental variables are required (but
 provided inside `.env` file):

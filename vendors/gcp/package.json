@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "hello": "npx functions-framework --target=hello",
-    "storage": "npx functions-framework --target=object_storage_upload"
+    "storage": "npx functions-framework --target=object_storage_upload",
+    "get_resources": "npx functions-framework --target=get_resources",
+    "simulate_cpu_load": "npx functions-framework --target=simulate_cpu_load"
   },
   "author": "",
   "license": "ISC",
