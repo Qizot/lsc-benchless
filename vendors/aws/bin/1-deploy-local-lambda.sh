@@ -16,6 +16,7 @@ awslocal lambda get-function --function-name ${FUNCTION_NAME} --region ${REGION}
 awslocal lambda create-function \
     --region ${REGION} \
     --function-name ${FUNCTION_NAME} \
+    --environment $ENVIRONMENT \
     --runtime nodejs12.x \
     --handler ${FUNCTION_NAME}.handler \
     --memory-size 128 \
@@ -32,7 +33,8 @@ function_url=$(
     awslocal lambda create-function-url-config \
         --region ${REGION} \
         --function-name ${FUNCTION_NAME} \
-        --auth-type NONE 
+        --auth-type NONE \
+        | jq '.FunctionUrl'
 )
 
 echo "Function url: $function_url"
