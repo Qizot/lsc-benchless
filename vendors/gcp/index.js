@@ -1,6 +1,6 @@
 const functions = require('@google-cloud/functions-framework');
-
-const { Storage } = require('@google-cloud/storage')
+const math = require("mathjs");
+const { Storage } = require('@google-cloud/storage');
 
 functions.http("hello", (_req, res) => {
   res.send("Hello world!");
@@ -15,17 +15,15 @@ functions.http("get_resources", (_req, res) => {
   }));
 });
 
-function simulateLoad(numberOfIterations) {
-  sum = 0;
-  for(var i=0; i<numberOfIterations; i++) {
-    sum+=1;
-  }
-  return sum;
+function simulateLoad(matrixSize) {
+  var first = math.random([matrixSize, matrixSize]);
+  var second = math.random([matrixSize, matrixSize]);
+  return math.multiply(first, second);
 }
 
 functions.http("simulate_cpu_load", (req, res) => {
   const startTime = new Date();
-  var result = simulateLoad(req['query']['numberOfIterations']);
+  var result = simulateLoad(req['query']['matrixSize']);
   const endTime = new Date();
   res.send(JSON.stringify({
       elapsedTimeMs: (endTime-startTime)  

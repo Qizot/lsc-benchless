@@ -31,7 +31,7 @@ with proper S3. On dev environment it connects to `minio` (the `localstack` didn
 To test out the lambdas the `1-deploy-local-lambda.sh` scripts will print out the lambda's url on completion. All you
 need is to perform an HTTP request against it.
 
-The `simulate cpu load` function requires to pass a `numberOfIterations` query parameter to the HTTP url.
+The `simulate cpu load` function requires to pass a `matrixSize` query parameter to the HTTP url.
 
 ## Dev environment
 Before deploying to the cloud we can freely test given lambdas by deploying them to local environment provided

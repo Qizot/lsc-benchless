@@ -10,6 +10,8 @@ Implementation of Azure Function serverless functions.
 * `hello` - simple hello world - testing the cold start 
 * `object_storage_upload` - Blob storage update  - for the vendor's object storage solution (uploads a 50MB object and returns
     the execution time)
+* `simulate_cpu_load` - tests the CPU performance by performing a large, dense matrix multiplication
+* `get_resources` - returns resources available on given machine
 
 ## Structure
 Each of the functions has its own folder.
@@ -26,12 +28,12 @@ func start object_storage_upload
 # run the get resources function
 func start get_resources
 # run the simulate cpu load function
-func start get_resources
+func start simulate_cpu_load
 ```
 
 To run the storage function locally you need to run `azurite` with given `docker-compose` setup.
 
-The `simulate cpu load` function requires to pass a `numberOfIterations` query parameter to the HTTP url.
+The `simulate cpu load` function requires to pass a `matrixSize` query parameter to the HTTP url.
 
 In case of local development and storage function couple of environmental variables are required (but
 provided inside `.env` file):
