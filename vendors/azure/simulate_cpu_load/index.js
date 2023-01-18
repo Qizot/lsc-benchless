@@ -1,14 +1,15 @@
-function simulateLoad(numberOfIterations) {
-  sum = 0;
-  for(var i=0; i<numberOfIterations; i++) {
-    sum+=1;
-  }
+const math = require("mathjs");
+
+function simulateLoad(matrixSize) {
+  var first = math.random([matrixSize, matrixSize]);
+  var second = math.random([matrixSize, matrixSize]);
+  return math.multiply(first, second);
 }
 
 module.exports = async function (context, req){
   try{
     const startTime = new Date();
-    simulateLoad(req['query']['numberOfIterations']);
+    simulateLoad(req['query']['matrixSize']);
     const endTime = new Date();
 
     context.res = {

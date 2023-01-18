@@ -40,5 +40,5 @@ for the first time:
 Also to test the storage function one needs to run the `docker-compose` which consists of a fake Google Cloud Storage 
 container.
 
-The `simulate cpu load` function requires to pass a `numberOfIterations` query parameter to the HTTP url.
+The `simulate cpu load` function requires to pass a `matrixSize` query parameter to the HTTP url.
 

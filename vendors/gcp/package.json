@@ -17,7 +17,8 @@
   "dependencies": {
     "@google-cloud/debug-agent": "^7.0.0",
     "@google-cloud/functions-framework": "^3.1.0",
-    "escape-html": "^1.0.3"
+    "escape-html": "^1.0.3",
+    "mathjs": "^11.5.0"
   },
   "devDependencies": {
     "@google-cloud/storage": "^6.0.0"
