@@ -10,7 +10,7 @@ functions.http("get_resources", (req, res) => {
   const mb = req['query']['allocateMB'];
 
   if (mb) {
-    const array = new Uint8Array(parseInt(mb * 1024 * 1024)); 
+    const array = new Uint8Array(parseInt(mb) * 1024 * 1024); 
   }
 
   const os = require('os');

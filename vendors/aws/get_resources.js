@@ -4,7 +4,7 @@ module.exports.handler = async function(event) {
   const mb  = event['queryStringParameters']['allocateMB'];
 
   if (mb) {
-    const array = new Uint8Array(parseInt(mb * 1024 * 1024)); 
+    const array = new Uint8Array(parseInt(mb) * 1024 * 1024); 
   }
 
   return {
