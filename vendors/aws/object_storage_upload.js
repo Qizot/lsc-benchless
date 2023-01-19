@@ -30,7 +30,8 @@ function uploadObjectToS3Bucket(objectName, objectData) {
 }
 
 function createEmptyPayload(size) {
-  return Buffer.from(new Uint8Array(size));
+  const { randomBytes } = require('crypto');
+  return randomBytes(size);
 }
 
 module.exports.handler = async function(_event) {

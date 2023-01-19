@@ -6,8 +6,14 @@ functions.http("hello", (_req, res) => {
   res.send("Hello world!");
 });
 
-functions.http("get_resources", (_req, res) => {
-  var os = require('os');
+functions.http("get_resources", (req, res) => {
+  const mb = req['query']['allocateMB'];
+
+  if (mb) {
+    const array = new Uint8Array(parseInt(mb * 1024 * 1024)); 
+  }
+
+  const os = require('os');
   res.send(JSON.stringify({
     cpus: os.cpus(),
     totalmem: os.totalmem(), 
@@ -32,7 +38,8 @@ functions.http("simulate_cpu_load", (req, res) => {
 
 
 function createPayload(size) {
-  return Buffer.from(new Uint8Array(size));
+  const { randomBytes } = require('crypto');
+  return randomBytes(size);
 }
 
 functions.http('object_storage_upload', async (_req, res) => {

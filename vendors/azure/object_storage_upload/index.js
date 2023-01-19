@@ -7,7 +7,8 @@ const containerClient = blobService.getContainerClient(process.env.BUCKET_NAME);
 
 
 function createPayload(size) {
-    return Buffer.from(new Uint8Array(size));
+  const { randomBytes } = require('crypto');
+  return randomBytes(size);
 }
 
 module.exports = async function(context, req) {

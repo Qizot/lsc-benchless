@@ -1,5 +1,11 @@
 module.exports.handler = async function(event) {
-  var os = require('os');
+  const os = require('os');
+
+  const mb  = event['queryStringParameters']['allocateMB'];
+
+  if (mb) {
+    const array = new Uint8Array(parseInt(mb * 1024 * 1024)); 
+  }
 
   return {
     statusCode: 200,
